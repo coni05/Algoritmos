@@ -1,27 +1,33 @@
 // Arreglo para las 5 habitaciones (0 = libre, 1 = ocupada)
-let habitaciones = [0, 0, 0, 0, 0];
+let habitaciones = [0, 0, 0, 0, 0]; // Inicializa un arreglo con 5 habitaciones, todas libres
 
-// Función para mostrar estado de habitaciones
+// Función para mostrar el estado de las habitaciones
 const mostrarEstado = () => {
-  let estado = "Estado de habitaciones:\n";
+  let estado = "Estado de habitaciones:\n"; // Inicializa un string para mostrar el estado
+  // Recorre cada habitación para construir el estado
   for (let i = 0; i < habitaciones.length; i++) {
+    // Agrega el estado de cada habitación al string
     estado += `Habitación ${i + 1}: ${habitaciones[i] === 0 ? "Libre" : "Ocupada"}\n`;
   }
+  // Cuenta cuántas habitaciones están libres
   const libres = habitaciones.filter(h => h === 0).length;
+  // Muestra el estado y la cantidad de habitaciones libres
   alert(`${estado}\nHabitaciones libres: ${libres}`);
 };
 
 // Función para mostrar las habitaciones libres
 const mostrarHabitacionesLibres = () => {
+  // Crea un arreglo con los números de las habitaciones libres
   const libres = habitaciones
-    .map((estado, index) => (estado === 0 ? index + 1 : null))
-    .filter((num) => num !== null);
+    .map((estado, index) => (estado === 0 ? index + 1 : null)) // Mapea el estado a los índices
+    .filter((num) => num !== null); // Filtra los valores nulos
+  // Muestra las habitaciones libres
   alert(`Habitaciones libres: ${libres.join(", ")}`);
 };
 
 // Función para reservar una habitación
 const reservarHabitacion = (num) => {
- if (num < 1 || num > 5) {
+ if (isNaN(num) || num < 1 || num > 5) {
  alert("Número de habitación inválido. Usa 1-5.");
  } else if (habitaciones[num - 1] === 1) {
  alert("Habitación ya ocupada.");
@@ -34,7 +40,7 @@ const reservarHabitacion = (num) => {
 
 // Función para liberar una habitación
 const liberarHabitacion = (num) => {
- if (num < 1 || num > 5) {
+ if (isNaN(num) || num < 1 || num > 5) {
  alert("Número de habitación inválido. Usa 1-5.");
  } else if (habitaciones[num - 1] === 0) {
  alert("Habitación ya está libre.");
@@ -47,19 +53,20 @@ const liberarHabitacion = (num) => {
 
 // Menú principal
 while (true) {
- let opcion = prompt("1. Ver estado\n2. Reservar\n3. Liberar\n4.Salir\nElige una opción:");
- if (opcion === "1") {
- mostrarEstado();
- } else if (opcion === "2") {
- let num = parseInt(prompt("Ingresa el número de habitación(1-5):"));
- reservarHabitacion(num);
- } else if (opcion === "3") {
- let num = parseInt(prompt("Ingresa el número de habitación(1-5):"));
- liberarHabitacion(num);
- } else if (opcion === "4") {
- alert("Saliendo...");
- break;
- } else {
- alert("Opción inválida.");
- }
+  // Muestra un menú para que el usuario elija una opción
+  let opcion = prompt("1. Ver estado\n2. Reservar\n3. Liberar\n4. Salir\nElige una opción:");
+  if (opcion === "1") {
+    mostrarEstado(); // Muestra el estado de las habitaciones
+  } else if (opcion === "2") {
+    let num = parseInt(prompt("Ingresa el número de habitación(1-5):")); // Solicita el número de habitación
+    reservarHabitacion(num); // Intenta reservar la habitación
+  } else if (opcion === "3") {
+    let num = parseInt(prompt("Ingresa el número de habitación(1-5):")); // Solicita el número de habitación
+    liberarHabitacion(num); // Intenta liberar la habitación
+  } else if (opcion === "4") {
+    alert("Saliendo..."); // Mensaje de salida
+    break; // Sale del bucle
+  } else {
+    alert("Opción inválida."); // Mensaje si la opción no es válida
+  }
 }
