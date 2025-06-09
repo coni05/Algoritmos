@@ -1,0 +1,25 @@
+{
+  "name": "apirest-gestordetareas",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-async-error": "^0.0.2",
+    "helmet": "^8.1.0",
+    "joi": "^17.13.3",
+    "mysql2": "^3.14.1"
+  },
+  "devDependencies": {
+    "nodemo": "^1.0.0"
+  }
+}
+
